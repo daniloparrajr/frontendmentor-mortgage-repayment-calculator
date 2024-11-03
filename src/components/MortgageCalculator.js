@@ -1,70 +1,115 @@
+"use client"
+
+import IllustrationEmpty from "/public/images/illustration-empty.svg";
+import IconCalculator from "/public/images/icon-calculator.svg";
+
+import NumberInput from "@/components/NumberInput";
+import RadioInput from "@/components/RadioInput";
+import {useState} from "react";
+
 export default function MortgageCalculator(props) {
+  const [mortgageAmount, setMortgageAmount] = useState('');
+  const [mortgageTerm, setMortgageTerm] = useState('');
+  const [interestRate, setInterestRate] = useState('');
+  const [mortgageType, setMortgageType] = useState();
+
+  function handleResetForm() {
+    setMortgageAmount('');
+    setMortgageTerm('');
+    setInterestRate('');
+    setMortgageType(undefined);
+  }
+
   return (
-    <section className="bg-white rounded-3xl w-[1008px] grid grid-cols-2 overflow-hidden">
-      <div className="p-500">
-        <div className="mb-500">
-          <h2 className="font-bold text-lg text-slate-900">Mortgage Calculator</h2>
-          <button>Clear All</button>
+    <section className="bg-white sm:rounded-3xl w-[1008px] lg:grid lg:grid-cols-2 overflow-hidden drop-shadow-3xl">
+      <div className="px-300 py-400 sm:p-500">
+        <div className="mb-500 flex justify-between items-center">
+          <h2 className="font-bold text-lg">Mortgage Calculator</h2>
+          <button onClick={handleResetForm} className="text-slate-700 underline underline-offset-4">Clear All</button>
         </div>
 
-        <form>
-          <label htmlFor="mortgageAmount">Mortgage Amount</label>
-          <input id="mortgageAmount" type="number"/>
-
-          <label htmlFor="mortgageTerm">Mortgage Term</label>
-          <input id="mortgageTerm" type="number"/>
-
-          <label htmlFor="interestRate">Interest Rate</label>
-          <input id="interestRate" type="number"/>
-
-
-          <fieldset>
-            <legend>
-              Mortgage Type
-            </legend>
-
-            <input
-              type="radio"
-              name="repayment"
-              id="repayment"
-              value="yes"
+        <form className="grid gap-300">
+          <div className="grid gap-150">
+            <NumberInput
+              label="Mortgage Amount"
+              id="mortgageAmount"
+              value={mortgageAmount}
+              onChange={(e) => setMortgageAmount(e.target.value)}
+              prefix="£"
             />
-            <label htmlFor="repayment">
-              Repayment
-            </label>
+          </div>
 
-            <input
-              type="radio"
-              name="interest-only"
-              id="interestOnly"
-              value="yes"
-            />
-            <label htmlFor="interestOnly">
-              Interest Only
-            </label>
-          </fieldset>
+          <div className="grid grid-cols-2 gap-300">
+            <div className="grid gap-150">
+              <NumberInput
+                label="Mortgage Term"
+                id="mortgageTerm"
+                value={mortgageTerm}
+                onChange={(e) => setMortgageTerm(e.target.value)}
+                suffix="years"
+              />
+            </div>
 
+            <div className="grid gap-150">
+              <NumberInput
+                label="Interest Rate"
+                id="interestRate"
+                value={interestRate}
+                onChange={(e) => setInterestRate(e.target.value)}
+                suffix="%"
+                required={true}
+              />
+            </div>
+          </div>
 
-          <button type="submit">Calculate Repayments</button>
+          <RadioInput
+            title="Mortgage Type"
+            name="mortgage-type"
+            options={[
+              {
+                id: "repayment",
+                label: "Repayment",
+                value: "repayment",
+                checked: mortgageType === "repayment",
+                onChange: e => setMortgageType(e.target.value),
+              },
+              {
+                id: "interestOnly",
+                label: "Interest Only",
+                value: "interest-only",
+                checked: mortgageType === "interest-only",
+                onChange: e => setMortgageType(e.target.value),
+              }
+            ]}
+          />
+
+          <button className="rounded-full bg-lime py-200 px-400 font-bold w-fit flex gap-150" type="submit">
+            <IconCalculator />
+            <span>Calculate Repayments</span>
+          </button>
         </form>
       </div>
-      <div className="p-500 bg-slate-900 text-slate-300 rounded-bl-[80px]">
-        <div className="text-center">
-          <h3 className="text-lg text-white font-bold mb-200">Results shown here</h3>
+      <div className="p-500 bg-slate-900 text-slate-300 xl:rounded-bl-[80px]">
+        <div className="flex flex-col items-center justify-center gap-200 text-center h-full">
+          <IllustrationEmpty/>
+          <h3 className="text-lg text-white font-bold">Results shown here</h3>
           <p>Complete the form and click “calculate repayments” to see what your monthly repayments would be.</p>
         </div>
 
-        <h3 className="text-lg text-white font-bold mb-200">Your results</h3>
+        <div className="hidden">
+          <h3 className="text-lg text-white font-bold mb-200">Your results</h3>
 
-        <p className="mb-500">Your results are shown below based on the information you provided. To adjust the results, edit the form and
-          click “calculate repayments” again.</p>
+          <p className="mb-500">Your results are shown below based on the information you provided. To adjust the
+            results, edit the form and
+            click “calculate repayments” again.</p>
 
-        <div className="bg-black/25 p-400 rounded-lg border-t-4 border-lime">
-          <p>Your monthly repayments</p>
-          <p className="text-lime text-xl font-bold">£1,797.74</p>
-          <div className="my-400 border-t border-slate-300/25"></div>
-          <p className="mb-100">Total you&#39;ll repay over the term</p>
-          <p className="text-white font-bold text-lg">£539,322.94</p>
+          <div className="bg-black/25 p-400 rounded-lg border-t-4 border-lime">
+            <p>Your monthly repayments</p>
+            <p className="text-lime text-xl font-bold">£1,797.74</p>
+            <div className="my-400 border-t border-slate-300/25"></div>
+            <p className="mb-100">Total you&#39;ll repay over the term</p>
+            <p className="text-white font-bold text-lg">£539,322.94</p>
+          </div>
         </div>
       </div>
     </section>

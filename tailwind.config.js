@@ -36,6 +36,9 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-plus-jakarta-sans)'],
       },
+      dropShadow: {
+        '3xl': '0 32px 64px rgb(19 48 65 / 0.10)',
+      },
     },
   },
   plugins: [],
