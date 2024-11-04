@@ -15,6 +15,8 @@ module.exports = {
       "slate-500": "#6B94A8",
       "slate-300": "#9ABED5",
       "slate-100": "#E4F4FD",
+      "current": "currentColor",
+      "transparent": "transparent"
     },
     fontSize: {
       sm: ["14px", "1.5"],

@@ -12,12 +12,14 @@ export default function MortgageCalculator(props) {
   const [mortgageTerm, setMortgageTerm] = useState('');
   const [interestRate, setInterestRate] = useState('');
   const [mortgageType, setMortgageType] = useState();
+  const [monthlyRepayments, setMonthlyRepayments] = useState();
 
   function handleResetForm() {
     setMortgageAmount('');
     setMortgageTerm('');
     setInterestRate('');
     setMortgageType(undefined);
+    setMonthlyRepayments(undefined);
   }
 
   return (
@@ -90,27 +92,31 @@ export default function MortgageCalculator(props) {
         </form>
       </div>
       <div className="p-500 bg-slate-900 text-slate-300 xl:rounded-bl-[80px]">
-        <div className="flex flex-col items-center justify-center gap-200 text-center h-full">
-          <IllustrationEmpty/>
-          <h3 className="text-lg text-white font-bold">Results shown here</h3>
-          <p>Complete the form and click “calculate repayments” to see what your monthly repayments would be.</p>
-        </div>
-
-        <div className="hidden">
-          <h3 className="text-lg text-white font-bold mb-200">Your results</h3>
-
-          <p className="mb-500">Your results are shown below based on the information you provided. To adjust the
-            results, edit the form and
-            click “calculate repayments” again.</p>
-
-          <div className="bg-black/25 p-400 rounded-lg border-t-4 border-lime">
-            <p>Your monthly repayments</p>
-            <p className="text-lime text-xl font-bold">£1,797.74</p>
-            <div className="my-400 border-t border-slate-300/25"></div>
-            <p className="mb-100">Total you&#39;ll repay over the term</p>
-            <p className="text-white font-bold text-lg">£539,322.94</p>
+        {monthlyRepayments === undefined && (
+          <div className="flex flex-col items-center justify-center gap-200 text-center h-full">
+            <IllustrationEmpty/>
+            <h3 className="text-lg text-white font-bold">Results shown here</h3>
+            <p>Complete the form and click “calculate repayments” to see what your monthly repayments would be.</p>
           </div>
-        </div>
+        )}
+
+        {monthlyRepayments !== undefined && (
+          <>
+            <h3 className="text-lg text-white font-bold mb-200">Your results</h3>
+
+            <p className="mb-500">Your results are shown below based on the information you provided. To adjust the
+              results, edit the form and
+              click “calculate repayments” again.</p>
+
+            <div className="bg-black/25 p-400 rounded-lg border-t-4 border-lime">
+              <p>Your monthly repayments</p>
+              <p className="text-lime text-xl font-bold">£1,797.74</p>
+              <div className="my-400 border-t border-slate-300/25"></div>
+              <p className="mb-100">Total you&#39;ll repay over the term</p>
+              <p className="text-white font-bold text-lg">£539,322.94</p>
+            </div>
+          </>
+        )}
       </div>
     </section>
   );
