@@ -39,13 +39,16 @@ export default function MortgageCalculator(props) {
           <div className="grid gap-150">
             <Input
               label="Mortgage Amount"
-              id={`${id}-mortgageAmount`}
-              value={mortgageAmount}
-              name="mortgage-amount"
-              type="text"
-              pattern="^[0-9]{1,3}(,[0-9]{3})*$"
-              onChange={(e) => setMortgageAmount(formatCurrency(e.target.value))}
               prefix="£"
+              attributes={{
+                id: `${id}-mortgageAmount`,
+                value: mortgageAmount,
+                name: "mortgage-amount",
+                type: "text",
+                pattern: "^[0-9]{1,3}(,[0-9]{3})*$",
+                required: true,
+                onChange: (e) => setMortgageAmount(formatCurrency(e.target.value))
+              }}
             />
           </div>
           <div className="grid grid-cols-2 gap-300">

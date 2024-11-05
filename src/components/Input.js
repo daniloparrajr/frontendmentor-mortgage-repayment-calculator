@@ -2,13 +2,13 @@
 
 import {useState} from "react";
 
-export default function Input({label, id, name, type, value, onChange, required, pattern, prefix = '', suffix = '' }) {
-  const [isFocus, setIsFocus] = useState(false);
-
+export default function Input({label, attributes = {}, prefix = '', suffix = '' }) {
+  const [status, setStatus] = useState(false);
+  const {id, ...rest} = attributes;
   let stateStyles = '';
   let affixStyles = '';
 
-  if (isFocus) {
+  if (status) {
     stateStyles = 'border-lime';
     affixStyles = 'bg-lime/15';
   } else {
@@ -21,22 +21,16 @@ export default function Input({label, id, name, type, value, onChange, required,
       <label htmlFor={id} className="text-slate-700 block">{label}</label>
       <div className={`flex border rounded overflow-hidden transition-colors ${stateStyles}`}>
         {prefix.length > 0 && (
-          <div className={`px-200 py-150 text-md font-bold transition-colors ${affixStyles}`}>{prefix}</div>
+          <span className={`px-200 py-150 text-md font-bold transition-colors ${affixStyles}`}>{prefix}</span>
         )}
         <input
-          id={id}
-          type={type}
-          name={name}
+          {...rest}
           className="py-100 px-200 font-bold block w-full focus:outline-none"
-          value={value}
-          onChange={onChange}
-          required={required}
-          pattern={pattern}
-          onFocus={()=> setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
+          onFocus={()=> setStatus(true)}
+          onBlur={() => setStatus(false)}
         />
         {suffix.length > 0 && (
-          <div className={`px-200 py-150 text-md font-bold transition-colors ${affixStyles}`}>{suffix}</div>
+          <span className={`px-200 py-150 text-md font-bold transition-colors ${affixStyles}`}>{suffix}</span>
         )}
       </div>
     </>
