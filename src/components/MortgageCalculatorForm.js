@@ -16,7 +16,7 @@ export default function MortgageCalculatorForm({handleSubmit}) {
   const id = useId();
 
   return (
-    <form className="grid gap-300" onSubmit={handleSubmit}>
+    <form noValidate={true} className="grid gap-300" onSubmit={handleSubmit}>
       <div className="flex flex-col gap-150">
         <Input
           label="Mortgage Amount"
