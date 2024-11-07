@@ -14,8 +14,15 @@ export default function MortgageCalculator(props) {
     setFormKey(!formKey);
   }
 
-  function handleSubmit(e) {
+  function handleSubmit(e, formRef) {
     e.preventDefault();
+
+    if (formRef.current.checkValidity()) {
+      console.log('success!')
+    } else {
+      console.log('error!!')
+      formRef.current.reportValidity();
+    }
   }
 
   return (

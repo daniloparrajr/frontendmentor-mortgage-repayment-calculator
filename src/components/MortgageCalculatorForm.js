@@ -5,9 +5,10 @@ import Input from "@/components/Input";
 import NumberInput from "@/components/NumberInput";
 import RadioInput from "@/components/RadioInput";
 
-import {useId, useState} from "react";
+import {useId, useRef, useState} from "react";
 
 export default function MortgageCalculatorForm({handleSubmit}) {
+  const formRef = useRef(null);
   const [mortgageAmount, setMortgageAmount] = useState('');
   const [mortgageTerm, setMortgageTerm] = useState('');
   const [interestRate, setInterestRate] = useState('');
@@ -15,8 +16,12 @@ export default function MortgageCalculatorForm({handleSubmit}) {
 
   const id = useId();
 
+  function handleFormSubmit(e) {
+    handleSubmit(e, formRef);
+  }
+
   return (
-    <form noValidate={true} className="grid gap-300" onSubmit={handleSubmit}>
+    <form ref={formRef} noValidate={true} className="grid gap-300" onSubmit={handleFormSubmit}>
       <div className="flex flex-col gap-150">
         <Input
           label="Mortgage Amount"
@@ -76,6 +81,7 @@ export default function MortgageCalculatorForm({handleSubmit}) {
             value: "repayment",
             checked: mortgageType === "repayment",
             onChange: e => setMortgageType(e.target.value),
+            required: true,
           },
           {
             id: `${id}-interestOnly`,

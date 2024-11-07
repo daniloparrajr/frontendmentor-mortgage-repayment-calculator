@@ -23,7 +23,7 @@ export default function Input({label, attributes = {}, prefix = '', suffix = '' 
     affixStyles = 'bg-slate-100 text-slate-700';
   }
 
-  if (id) {
+  if (typeof id === 'undefined') {
     inputId = `${inputId}-${id}`;
   }
 

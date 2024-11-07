@@ -5,7 +5,7 @@ export default function RadioInput({title, name, options}) {
         {title}
       </legend>
 
-      {options !== undefined && options.map(({id, label, value, onChange, checked}) => (
+      {options !== undefined && options.map(({id, label, value, onChange, checked, ...attributes}) => (
         <div key={id}>
           <label
             htmlFor={id}
@@ -18,6 +18,7 @@ export default function RadioInput({title, name, options}) {
               checked={checked}
               onChange={onChange}
               className="sr-only peer"
+              {...attributes}
             />
             <span className="transition-colors absolute inset-0 border border-slate-500 peer-checked:border-lime peer-checked:bg-lime/10 rounded peer-checked:text-lime hover:border-lime"></span>
             <div className="w-[20px] h-[20px] border-2 border-slate-900 text-transparent peer-checked:text-lime peer-checked:border-lime flex items-center justify-center rounded-full">
