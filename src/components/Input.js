@@ -45,7 +45,7 @@ export default function Input({label, attributes = {}, prefix = '', suffix = '' 
           onInvalid={(e)=> {
             e.preventDefault();
             setValidationMessage(e.target.validationMessage);
-            setStatus(e.target.checkValidity() ? 'success' : 'error' );
+            setStatus('error' );
           }}
         />
         {suffix.length > 0 && (
