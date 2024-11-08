@@ -42,6 +42,11 @@ export default function Input({label, attributes = {}, prefix = '', suffix = '' 
             setValidationMessage(e.target.validationMessage);
             setStatus(e.target.checkValidity() ? 'success' : 'error' );
           }}
+          onInvalid={(e)=> {
+            e.preventDefault();
+            setValidationMessage(e.target.validationMessage);
+            setStatus(e.target.checkValidity() ? 'success' : 'error' );
+          }}
         />
         {suffix.length > 0 && (
           <span className={`px-200 py-150 text-md font-bold transition-colors ${affixStyles}`}>{suffix}</span>

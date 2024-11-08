@@ -18,9 +18,8 @@ export default function MortgageCalculator(props) {
     e.preventDefault();
 
     if (formRef.current.checkValidity()) {
-      console.log('success!')
+      console.log('success!');
     } else {
-      console.log('error!!')
       formRef.current.reportValidity();
     }
   }
