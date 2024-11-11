@@ -1,4 +1,4 @@
-import {formatCurrency} from "@/utils";
+import {formatCurrency, getNumberFromCurrency} from "@/utils";
 import IconCalculator from "../../public/images/icon-calculator.svg";
 
 import Input from "@/components/Input";
@@ -17,7 +17,9 @@ export default function MortgageCalculatorForm({handleSubmit}) {
   const id = useId();
 
   function handleFormSubmit(e) {
-    handleSubmit(e, formRef);
+    handleSubmit(e, formRef, {
+      mortgageAmount: getNumberFromCurrency(mortgageAmount), mortgageTerm, interestRate
+    });
   }
 
   return (

@@ -4,6 +4,7 @@ import IllustrationEmpty from "/public/images/illustration-empty.svg";
 
 import {useState} from "react";
 import MortgageCalculatorForm from "@/components/MortgageCalculatorForm";
+import {calculateMonthlyMortgagePayment} from "@/utils";
 
 
 export default function MortgageCalculator(props) {
@@ -12,13 +13,16 @@ export default function MortgageCalculator(props) {
 
   function handleResetForm() {
     setFormKey(!formKey);
+    setMonthlyRepayments(undefined);
   }
 
-  function handleSubmit(e, formRef) {
+  function handleSubmit(e, formRef, {mortgageAmount, mortgageTerm, interestRate}) {
     e.preventDefault();
 
     if (formRef.current.checkValidity()) {
-      console.log('success!');
+      const total = calculateMonthlyMortgagePayment(mortgageAmount, interestRate, mortgageTerm);
+      console.log(total);
+      setMonthlyRepayments(total);
     } else {
       formRef.current.reportValidity();
     }
