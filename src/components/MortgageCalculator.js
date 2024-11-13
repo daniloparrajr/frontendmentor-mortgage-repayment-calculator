@@ -15,6 +15,7 @@ export default function MortgageCalculator(props) {
   function handleResetForm() {
     setFormKey(!formKey);
     setMonthlyRepayments(0);
+    setTotalInterest(0);
   }
 
   function handleSubmit(e, formRef, {mortgageAmount, mortgageTerm, interestRate, mortgageType}) {
