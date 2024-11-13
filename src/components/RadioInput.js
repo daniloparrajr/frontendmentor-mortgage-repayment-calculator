@@ -51,9 +51,9 @@ export default function RadioInput({title, name, options}) {
                 }}
               />
               <span className={`${containerValidationStyles} transition-colors absolute inset-0 border peer-checked:border-lime peer-checked:bg-lime/10 rounded peer-checked:text-lime hover:border-lime`}></span>
-              <div className={`${inputValidationStyles} w-[20px] h-[20px] border-2 text-transparent peer-checked:text-lime peer-checked:border-lime flex items-center justify-center rounded-full`}>
+              <span className={`${inputValidationStyles} block w-[20px] h-[20px] border-2 text-transparent peer-checked:text-lime peer-checked:border-lime flex items-center justify-center rounded-full`}>
                 <span className="w-[10px] h-[10px] rounded-full bg-current transition-colors"></span>
-              </div>
+              </span>
               <span className={labelValidationStyles}>{label}</span>
             </label>
           </div>
