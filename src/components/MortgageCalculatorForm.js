@@ -23,8 +23,8 @@ export default function MortgageCalculatorForm({handleSubmit}) {
   }
 
   return (
-    <form ref={formRef} noValidate={true} className="grid gap-300" onSubmit={handleFormSubmit}>
-      <div className="flex flex-col gap-150">
+    <form ref={formRef} noValidate={true} onSubmit={handleFormSubmit}>
+      <div className="flex flex-col gap-150 mb-300">
         <Input
           label="Mortgage Amount"
           prefix="£"
@@ -39,7 +39,7 @@ export default function MortgageCalculatorForm({handleSubmit}) {
           }}
         />
       </div>
-      <div className="grid grid-cols-2 gap-300">
+      <div className="grid grid-cols-2 gap-300 mb-300">
         <div className="flex flex-col gap-150">
           <NumberInput
             label="Mortgage Term"
@@ -95,7 +95,7 @@ export default function MortgageCalculatorForm({handleSubmit}) {
         ]}
       />
 
-      <button className="rounded-full bg-lime py-200 px-400 font-bold w-fit flex gap-150" type="submit">
+      <button className="mt-500 rounded-full bg-lime py-200 px-400 font-bold w-fit flex gap-150" type="submit">
         <IconCalculator/>
         <span>Calculate Repayments</span>
       </button>
