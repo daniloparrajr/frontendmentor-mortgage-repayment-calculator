@@ -18,7 +18,7 @@ export default function MortgageCalculatorForm({handleSubmit}) {
 
   function handleFormSubmit(e) {
     handleSubmit(e, formRef, {
-      mortgageAmount: getNumberFromCurrency(mortgageAmount), mortgageTerm, interestRate
+      mortgageAmount: getNumberFromCurrency(mortgageAmount), mortgageTerm, interestRate, mortgageType
     });
   }
 

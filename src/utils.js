@@ -22,3 +22,16 @@ export function calculateMonthlyMortgagePayment(mortgageAmount, annualInterestRa
 export function getNumberFromCurrency(currency) {
   return Number(currency.replace(/,/g, ''));
 }
+
+export function roundNumber(num) {
+  return Math.round((num + Number.EPSILON) * 100) / 100
+}
+
+export function formatNumberToCurrency(number) {
+  return number.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'GBP',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+}
